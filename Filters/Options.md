@@ -9,6 +9,3 @@ Before space
 <!-- { "Lines": 5 } -->
 
 After space
-
-## Generating Tabs
-
