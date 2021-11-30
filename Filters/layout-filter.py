@@ -8,7 +8,7 @@ Currently supported:
 
 """
 
-from pandocfilters import RawInline, toJSONFilter, Para, Str
+from pandocfilters import RawBlock, toJSONFilter
 import re
 
 def layout(key, value, format, meta):
@@ -23,10 +23,12 @@ def handlePageBreak(key, value, format, meta):
     fmt, s = value
     if p_pagebreak.match(s):
         return pageBreak(format)
+    return []
 
 def pageBreak(format):
     if format == "docx":
-        return [RawInline("openxml", "<w:p><w:r><w:br w:type=""page""/></w:r></w:p>")]
+        return [RawBlock("openxml", "<w:p><w:r><w:br w:type=\"page\"/></w:r></w:p>")]
+    return []
 
 if __name__ == "__main__":
     toJSONFilter(layout)
